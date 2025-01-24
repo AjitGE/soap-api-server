@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:tns="http://example.com/player-service"
+    targetNamespace="http://example.com/player-service"
+    name="PlayerService">
+
+    <!-- Type definitions -->
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://example.com/player-service">
+            <!-- Common Types -->
+            <xsd:complexType name="ErrorType">
+                <xsd:sequence>
+                    <xsd:element name="statusCode" type="xsd:integer"/>
+                    <xsd:element name="type" type="xsd:string"/>
+                    <xsd:element name="message" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- Player Statistics Type -->
+            <xsd:complexType name="StatisticsType">
+                <xsd:sequence>
+                    <xsd:element name="season" type="xsd:string"/>
+                    <xsd:element name="goals" type="xsd:integer"/>
+                    <xsd:element name="assists" type="xsd:integer"/>
+                    <xsd:element name="matches" type="xsd:integer"/>
+                    <xsd:element name="yellowCards" type="xsd:integer" minOccurs="0"/>
+                    <xsd:element name="redCards" type="xsd:integer" minOccurs="0"/>
+                    <xsd:element name="minutesPlayed" type="xsd:integer" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- Award Type -->
+            <xsd:complexType name="AwardType">
+                <xsd:sequence>
+                    <xsd:element name="awardName" type="xsd:string"/>
+                    <xsd:element name="year" type="xsd:integer"/>
+                    <xsd:element name="category" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- Player Type -->
+            <xsd:complexType name="PlayerType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:integer" minOccurs="0"/>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string"/>
+                    <xsd:element name="club" type="xsd:string"/>
+                    <xsd:element name="position" type="xsd:string"/>
+                    <xsd:element name="age" type="xsd:integer"/>
+                    <xsd:element name="isActive" type="xsd:boolean"/>
+                    <xsd:element name="statistics" type="tns:StatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="awards" type="tns:AwardType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- Request and Response Elements -->
+            <xsd:element name="generateTokenRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="username" type="xsd:string"/>
+                        <xsd:element name="password" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="generateTokenResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="token" type="xsd:string"/>
+                        <xsd:element name="expiresIn" type="xsd:integer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="createPlayerRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="player" type="tns:PlayerType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="createPlayerResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="player" type="tns:PlayerType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="getPlayerRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:integer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="getPlayerResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="player" type="tns:PlayerType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="listPlayersRequest">
+                <xsd:complexType>
+                    <xsd:sequence/>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="listPlayersResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="players" type="tns:PlayerType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Add deletePlayer request and response elements after listPlayersResponse -->
+            <xsd:element name="deletePlayerRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:integer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="deletePlayerResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Add Header Types -->
+            <xsd:element name="AuthorizationHeader">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="token" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="ContentTypeHeader">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="type" type="xsd:string" fixed="text/xml"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Add new request/response elements for updatePlayerStats and bulkCreatePlayers -->
+            <xsd:element name="updatePlayerStatsRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:integer"/>
+                        <xsd:element name="statistics" type="tns:StatisticsType" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="updatePlayerStatsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="player" type="tns:PlayerType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="bulkCreatePlayersRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="players" type="tns:PlayerType" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="bulkCreatePlayersResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="players" type="tns:PlayerType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Add after bulkCreatePlayersResponse element -->
+            <xsd:element name="deleteAllPlayerStatsRequest">
+                <xsd:complexType>
+                    <xsd:sequence/>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="deleteAllPlayerStatsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="statusCode" type="xsd:integer"/>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="deletedCount" type="xsd:integer" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <!-- Message definitions -->
+    <wsdl:message name="generateTokenInput">
+        <wsdl:part name="parameters" element="tns:generateTokenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="generateTokenOutput">
+        <wsdl:part name="parameters" element="tns:generateTokenResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="createPlayerInput">
+        <wsdl:part name="parameters" element="tns:createPlayerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="createPlayerOutput">
+        <wsdl:part name="parameters" element="tns:createPlayerResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getPlayerInput">
+        <wsdl:part name="parameters" element="tns:getPlayerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getPlayerOutput">
+        <wsdl:part name="parameters" element="tns:getPlayerResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="listPlayersInput">
+        <wsdl:part name="parameters" element="tns:listPlayersRequest"/>
+    </wsdl:message>
+    <wsdl:message name="listPlayersOutput">
+        <wsdl:part name="parameters" element="tns:listPlayersResponse"/>
+    </wsdl:message>
+
+    <!-- Add deletePlayer messages after listPlayersOutput -->
+    <wsdl:message name="deletePlayerInput">
+        <wsdl:part name="parameters" element="tns:deletePlayerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="deletePlayerOutput">
+        <wsdl:part name="parameters" element="tns:deletePlayerResponse"/>
+    </wsdl:message>
+
+    <!-- Add messages for new operations -->
+    <wsdl:message name="updatePlayerStatsInput">
+        <wsdl:part name="parameters" element="tns:updatePlayerStatsRequest"/>
+    </wsdl:message>
+    <wsdl:message name="updatePlayerStatsOutput">
+        <wsdl:part name="parameters" element="tns:updatePlayerStatsResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="bulkCreatePlayersInput">
+        <wsdl:part name="parameters" element="tns:bulkCreatePlayersRequest"/>
+    </wsdl:message>
+    <wsdl:message name="bulkCreatePlayersOutput">
+        <wsdl:part name="parameters" element="tns:bulkCreatePlayersResponse"/>
+    </wsdl:message>
+
+    <!-- Add after bulkCreatePlayers messages -->
+    <wsdl:message name="deleteAllPlayerStatsInput">
+        <wsdl:part name="parameters" element="tns:deleteAllPlayerStatsRequest"/>
+    </wsdl:message>
+    <wsdl:message name="deleteAllPlayerStatsOutput">
+        <wsdl:part name="parameters" element="tns:deleteAllPlayerStatsResponse"/>
+    </wsdl:message>
+
+    <!-- Add Header Messages -->
+    <wsdl:message name="AuthorizationHeader">
+        <wsdl:part name="AuthorizationHeader" element="tns:AuthorizationHeader"/>
+    </wsdl:message>
+
+    <wsdl:message name="ContentTypeHeader">
+        <wsdl:part name="ContentTypeHeader" element="tns:ContentTypeHeader"/>
+    </wsdl:message>
+
+    <!-- Port Type -->
+    <wsdl:portType name="PlayerPortType">
+        <wsdl:operation name="generateToken">
+            <wsdl:input message="tns:generateTokenInput"/>
+            <wsdl:output message="tns:generateTokenOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="createPlayer">
+            <wsdl:input message="tns:createPlayerInput"/>
+            <wsdl:output message="tns:createPlayerOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="getPlayer">
+            <wsdl:input message="tns:getPlayerInput"/>
+            <wsdl:output message="tns:getPlayerOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="listPlayers">
+            <wsdl:input message="tns:listPlayersInput"/>
+            <wsdl:output message="tns:listPlayersOutput"/>
+        </wsdl:operation>
+
+        <!-- Add deletePlayer operation to portType -->
+        <wsdl:operation name="deletePlayer">
+            <wsdl:input message="tns:deletePlayerInput"/>
+            <wsdl:output message="tns:deletePlayerOutput"/>
+        </wsdl:operation>
+
+        <!-- Add operations to portType -->
+        <wsdl:operation name="updatePlayerStats">
+            <wsdl:input message="tns:updatePlayerStatsInput"/>
+            <wsdl:output message="tns:updatePlayerStatsOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="bulkCreatePlayers">
+            <wsdl:input message="tns:bulkCreatePlayersInput"/>
+            <wsdl:output message="tns:bulkCreatePlayersOutput"/>
+        </wsdl:operation>
+
+        <!-- Add to portType -->
+        <wsdl:operation name="deleteAllPlayerStats">
+            <wsdl:documentation>
+                Deletes all data from the system including players, statistics, and awards.
+            </wsdl:documentation>
+            <wsdl:input message="tns:deleteAllPlayerStatsInput"/>
+            <wsdl:output message="tns:deleteAllPlayerStatsOutput"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- SOAP Binding -->
+    <wsdl:binding name="PlayerServiceSOAPBinding" type="tns:PlayerPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="generateToken">
+            <soap:operation soapAction="http://example.com/player-service/generateToken"/>
+            <wsdl:input>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="createPlayer">
+            <soap:operation soapAction="http://example.com/player-service/createPlayer"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="getPlayer">
+            <soap:operation soapAction="http://example.com/player-service/getPlayer"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="listPlayers">
+            <soap:operation soapAction="http://example.com/player-service/listPlayers"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <!-- Add deletePlayer binding -->
+        <wsdl:operation name="deletePlayer">
+            <soap:operation soapAction="http://example.com/player-service/deletePlayer"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <!-- Add bindings for new operations -->
+        <wsdl:operation name="updatePlayerStats">
+            <soap:operation soapAction="http://example.com/player-service/updatePlayerStats"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="bulkCreatePlayers">
+            <soap:operation soapAction="http://example.com/player-service/bulkCreatePlayers"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <!-- Add to binding -->
+        <wsdl:operation name="deleteAllPlayerStats">
+            <soap:operation soapAction="http://example.com/player-service/deleteAllPlayerStats"/>
+            <wsdl:input>
+                <soap:header message="tns:AuthorizationHeader" part="AuthorizationHeader" use="literal"/>
+                <soap:header message="tns:ContentTypeHeader" part="ContentTypeHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Service -->
+    <wsdl:service name="PlayerService">
+        <wsdl:port name="PlayerServiceSOAP" binding="tns:PlayerServiceSOAPBinding">
+            <soap:address location="http://localhost:3000/soap/player"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

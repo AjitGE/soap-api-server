@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="74d9373a-a716-40e0-9c24-a50c50d763d3" activeEnvironment="Default" name="playerStats" resourceRoot="${projectDir}" soapui-version="5.8.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="90762d87-c0f8-4fff-95d5-05bf31aaa8c9" wsaVersion="NONE" name="PlayerBinding" type="wsdl" bindingName="{http://example.com/player-service}PlayerBinding" soapVersion="1_1" anonymous="optional" definition="player.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ajityadav/soapApi/src/services/player.wsdl"><con:part><con:url>file:/Users/ajityadav/soapApi/src/services/player.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://example.com/player-service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com/player-service">
+  <!--Type definitions-->
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://example.com/player-service">
+      <!--Common Types-->
+      <xsd:complexType name="ErrorType">
+        <xsd:sequence>
+          <xsd:element name="statusCode" type="xsd:integer"/>
+          <xsd:element name="type" type="xsd:string"/>
+          <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Player Statistics Type-->
+      <xsd:complexType name="StatisticsType">
+        <xsd:sequence>
+          <xsd:element name="season" type="xsd:string"/>
+          <xsd:element name="goals" type="xsd:integer"/>
+          <xsd:element name="assists" type="xsd:integer"/>
+          <xsd:element name="matches" type="xsd:integer"/>
+          <xsd:element name="yellowCards" type="xsd:integer" minOccurs="0"/>
+          <xsd:element name="redCards" type="xsd:integer" minOccurs="0"/>
+          <xsd:element name="minutesPlayed" type="xsd:integer" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Award Type-->
+      <xsd:complexType name="AwardType">
+        <xsd:sequence>
+          <xsd:element name="awardName" type="xsd:string"/>
+          <xsd:element name="year" type="xsd:integer"/>
+          <xsd:element name="category" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Player Type-->
+      <xsd:complexType name="PlayerType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:integer" minOccurs="0"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="club" type="xsd:string"/>
+          <xsd:element name="position" type="xsd:string"/>
+          <xsd:element name="age" type="xsd:integer"/>
+          <xsd:element name="isActive" type="xsd:boolean"/>
+          <xsd:element name="statistics" type="tns:StatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="awards" type="tns:AwardType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Fault Types-->
+      <xsd:element name="ValidationFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="error" type="tns:ErrorType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NotFoundFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="error" type="tns:ErrorType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ConflictFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="error" type="tns:ErrorType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AuthenticationFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="error" type="tns:ErrorType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Request and Response Types-->
+      <xsd:element name="getPlayerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPlayerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="player" type="tns:PlayerType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createPlayerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string"/>
+            <xsd:element name="club" type="xsd:string"/>
+            <xsd:element name="position" type="xsd:string"/>
+            <xsd:element name="age" type="xsd:integer"/>
+            <xsd:element name="isActive" type="xsd:boolean"/>
+            <xsd:element name="statistics" type="tns:StatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="awards" type="tns:AwardType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createPlayerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="player" type="tns:PlayerType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updatePlayerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string"/>
+            <xsd:element name="club" type="xsd:string"/>
+            <xsd:element name="position" type="xsd:string"/>
+            <xsd:element name="age" type="xsd:integer"/>
+            <xsd:element name="isActive" type="xsd:boolean"/>
+            <xsd:element name="statistics" type="tns:StatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="awards" type="tns:AwardType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updatePlayerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="player" type="tns:PlayerType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deletePlayerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deletePlayerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="playerId" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="listPlayersRequest">
+        <xsd:complexType>
+          <xsd:sequence/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="listPlayersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="players" type="tns:PlayerType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="bulkCreatePlayersRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="players" minOccurs="1" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="name" type="xsd:string"/>
+                  <xsd:element name="country" type="xsd:string"/>
+                  <xsd:element name="club" type="xsd:string"/>
+                  <xsd:element name="position" type="xsd:string"/>
+                  <xsd:element name="age" type="xsd:integer"/>
+                  <xsd:element name="isActive" type="xsd:boolean"/>
+                  <xsd:element name="statistics" type="tns:StatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+                  <xsd:element name="awards" type="tns:AwardType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="bulkCreatePlayersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="players" type="tns:PlayerType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Token Generation Types-->
+      <xsd:element name="generateTokenRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateTokenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="token" type="xsd:string"/>
+            <xsd:element name="expiresIn" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <!--Message definitions-->
+  <wsdl:message name="getPlayerInput">
+    <wsdl:part name="parameters" element="tns:getPlayerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getPlayerOutput">
+    <wsdl:part name="parameters" element="tns:getPlayerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationError">
+    <wsdl:part name="parameters" element="tns:ValidationFault"/>
+  </wsdl:message>
+  <wsdl:message name="NotFoundError">
+    <wsdl:part name="parameters" element="tns:NotFoundFault"/>
+  </wsdl:message>
+  <wsdl:message name="ConflictError">
+    <wsdl:part name="parameters" element="tns:ConflictFault"/>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationError">
+    <wsdl:part name="parameters" element="tns:AuthenticationFault"/>
+  </wsdl:message>
+  <wsdl:message name="createPlayerInput">
+    <wsdl:part name="parameters" element="tns:createPlayerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="createPlayerOutput">
+    <wsdl:part name="parameters" element="tns:createPlayerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="updatePlayerInput">
+    <wsdl:part name="parameters" element="tns:updatePlayerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="updatePlayerOutput">
+    <wsdl:part name="parameters" element="tns:updatePlayerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="deletePlayerInput">
+    <wsdl:part name="parameters" element="tns:deletePlayerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="deletePlayerOutput">
+    <wsdl:part name="parameters" element="tns:deletePlayerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="listPlayersInput">
+    <wsdl:part name="parameters" element="tns:listPlayersRequest"/>
+  </wsdl:message>
+  <wsdl:message name="listPlayersOutput">
+    <wsdl:part name="parameters" element="tns:listPlayersResponse"/>
+  </wsdl:message>
+  <!--Add messages for bulk create-->
+  <wsdl:message name="bulkCreatePlayersInput">
+    <wsdl:part name="parameters" element="tns:bulkCreatePlayersRequest"/>
+  </wsdl:message>
+  <wsdl:message name="bulkCreatePlayersOutput">
+    <wsdl:part name="parameters" element="tns:bulkCreatePlayersResponse"/>
+  </wsdl:message>
+  <!--Add after bulkCreatePlayers messages-->
+  <wsdl:message name="generateTokenInput">
+    <wsdl:part name="parameters" element="tns:generateTokenRequest"/>
+  </wsdl:message>
+  <wsdl:message name="generateTokenOutput">
+    <wsdl:part name="parameters" element="tns:generateTokenResponse"/>
+  </wsdl:message>
+  <!--Port Type-->
+  <wsdl:portType name="PlayerPortType">
+    <wsdl:operation name="generateToken">
+      <wsdl:input message="tns:generateTokenRequest"/>
+      <wsdl:output message="tns:generateTokenResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="createPlayer">
+      <wsdl:input message="tns:createPlayerRequest"/>
+      <wsdl:output message="tns:createPlayerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayer">
+      <wsdl:input message="tns:getPlayerRequest"/>
+      <wsdl:output message="tns:getPlayerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="listPlayers">
+      <wsdl:input message="tns:listPlayersRequest"/>
+      <wsdl:output message="tns:listPlayersResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="updatePlayer">
+      <wsdl:input message="tns:updatePlayerRequest"/>
+      <wsdl:output message="tns:updatePlayerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="deletePlayer">
+      <wsdl:input message="tns:deletePlayerRequest"/>
+      <wsdl:output message="tns:deletePlayerResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--SOAP Binding-->
+  <wsdl:binding name="PlayerBinding" type="tns:PlayerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="generateToken">
+      <soap:operation soapAction="http://example.com/player-service/generateToken"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createPlayer">
+      <soap:operation soapAction="http://example.com/player-service/createPlayer"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayer">
+      <soap:operation soapAction="http://example.com/player-service/getPlayer"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listPlayers">
+      <soap:operation soapAction="http://example.com/player-service/listPlayers"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePlayer">
+      <soap:operation soapAction="http://example.com/player-service/updatePlayer"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePlayer">
+      <soap:operation soapAction="http://example.com/player-service/deletePlayer"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!--Service-->
+  <wsdl:service name="PlayerService">
+    <wsdl:port name="PlayerPort" binding="tns:PlayerBinding">
+      <soap:address location="http://localhost:3000/soap/player"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:3000/soap/player</con:endpoint></con:endpoints><con:operation id="65da8781-cd34-485d-aff1-033689242e66" isOneWay="false" action="http://example.com/player-service/createPlayer" name="createPlayer" bindingOperationName="createPlayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5cc58748-91c0-43bc-93f6-8b5529c4553f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/createPlayer"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="94796fb4-d27f-4300-9845-62684ca85ae7" isOneWay="false" action="http://example.com/player-service/deletePlayer" name="deletePlayer" bindingOperationName="deletePlayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4f94caa9-0c7d-4075-b4b3-ca7e1389f2dd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/deletePlayer"/></con:call></con:operation><con:operation id="e934ba4d-bb0b-4ee1-ada7-943ce15f7643" isOneWay="false" action="http://example.com/player-service/generateToken" name="generateToken" bindingOperationName="generateToken" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="38124680-9ab1-4460-80c5-101af7366507" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/generateToken"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8a3bb219-7308-47bf-a58e-41e699ce4acc" isOneWay="false" action="http://example.com/player-service/getPlayer" name="getPlayer" bindingOperationName="getPlayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6c15a0a1-4e11-493a-b2f4-2d70885d0354" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/getPlayer"/></con:call></con:operation><con:operation id="db4dbc16-7f67-4afc-8548-df900cedc204" isOneWay="false" action="http://example.com/player-service/listPlayers" name="listPlayers" bindingOperationName="listPlayers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="261e0c7b-b2d2-4d7e-b92c-9ff307af69e2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/listPlayers"/></con:call></con:operation><con:operation id="dc3f977b-17fa-433a-867f-22f576e2c13b" isOneWay="false" action="http://example.com/player-service/updatePlayer" name="updatePlayer" bindingOperationName="updatePlayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cf22e493-196b-4449-938f-f4fc99ed38fa" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/updatePlayer"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="cdc5cd52-e705-4d02-93ce-4d84ad6bbe77" wsaVersion="NONE" name="PlayerServiceSOAPBinding" type="wsdl" bindingName="{http://example.com/player-service}PlayerServiceSOAPBinding" soapVersion="1_1" anonymous="optional" definition="player.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ajityadav/soapApi/src/services/player.wsdl"><con:part><con:url>file:/Users/ajityadav/soapApi/src/services/player.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://example.com/player-service" name="PlayerService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/player-service">
+  <!--Type definitions-->
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://example.com/player-service">
+      <!--Common Types-->
+      <xsd:complexType name="ErrorType">
+        <xsd:sequence>
+          <xsd:element name="statusCode" type="xsd:integer"/>
+          <xsd:element name="type" type="xsd:string"/>
+          <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Player Statistics Type-->
+      <xsd:complexType name="StatisticsType">
+        <xsd:sequence>
+          <xsd:element name="season" type="xsd:string"/>
+          <xsd:element name="goals" type="xsd:integer"/>
+          <xsd:element name="assists" type="xsd:integer"/>
+          <xsd:element name="matches" type="xsd:integer"/>
+          <xsd:element name="yellowCards" type="xsd:integer" minOccurs="0"/>
+          <xsd:element name="redCards" type="xsd:integer" minOccurs="0"/>
+          <xsd:element name="minutesPlayed" type="xsd:integer" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Award Type-->
+      <xsd:complexType name="AwardType">
+        <xsd:sequence>
+          <xsd:element name="awardName" type="xsd:string"/>
+          <xsd:element name="year" type="xsd:integer"/>
+          <xsd:element name="category" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Player Type-->
+      <xsd:complexType name="PlayerType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:integer" minOccurs="0"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="club" type="xsd:string"/>
+          <xsd:element name="position" type="xsd:string"/>
+          <xsd:element name="age" type="xsd:integer"/>
+          <xsd:element name="isActive" type="xsd:boolean"/>
+          <xsd:element name="statistics" type="tns:StatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="awards" type="tns:AwardType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--Request and Response Elements-->
+      <xsd:element name="generateTokenRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateTokenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="token" type="xsd:string"/>
+            <xsd:element name="expiresIn" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createPlayerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="player" type="tns:PlayerType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createPlayerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="player" type="tns:PlayerType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPlayerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPlayerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="player" type="tns:PlayerType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="listPlayersRequest">
+        <xsd:complexType>
+          <xsd:sequence/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="listPlayersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="statusCode" type="xsd:integer"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="players" type="tns:PlayerType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <!--Message definitions-->
+  <wsdl:message name="generateTokenInput">
+    <wsdl:part name="parameters" element="tns:generateTokenRequest"/>
+  </wsdl:message>
+  <wsdl:message name="generateTokenOutput">
+    <wsdl:part name="parameters" element="tns:generateTokenResponse"/>
+  </wsdl:message>
+  <wsdl:message name="createPlayerInput">
+    <wsdl:part name="parameters" element="tns:createPlayerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="createPlayerOutput">
+    <wsdl:part name="parameters" element="tns:createPlayerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getPlayerInput">
+    <wsdl:part name="parameters" element="tns:getPlayerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getPlayerOutput">
+    <wsdl:part name="parameters" element="tns:getPlayerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="listPlayersInput">
+    <wsdl:part name="parameters" element="tns:listPlayersRequest"/>
+  </wsdl:message>
+  <wsdl:message name="listPlayersOutput">
+    <wsdl:part name="parameters" element="tns:listPlayersResponse"/>
+  </wsdl:message>
+  <!--Port Type-->
+  <wsdl:portType name="PlayerPortType">
+    <wsdl:operation name="generateToken">
+      <wsdl:input message="tns:generateTokenInput"/>
+      <wsdl:output message="tns:generateTokenOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="createPlayer">
+      <wsdl:input message="tns:createPlayerInput"/>
+      <wsdl:output message="tns:createPlayerOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayer">
+      <wsdl:input message="tns:getPlayerInput"/>
+      <wsdl:output message="tns:getPlayerOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="listPlayers">
+      <wsdl:input message="tns:listPlayersInput"/>
+      <wsdl:output message="tns:listPlayersOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--SOAP Binding-->
+  <wsdl:binding name="PlayerServiceSOAPBinding" type="tns:PlayerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="generateToken">
+      <soap:operation soapAction="http://example.com/player-service/generateToken"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createPlayer">
+      <soap:operation soapAction="http://example.com/player-service/createPlayer"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayer">
+      <soap:operation soapAction="http://example.com/player-service/getPlayer"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listPlayers">
+      <soap:operation soapAction="http://example.com/player-service/listPlayers"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!--Service-->
+  <wsdl:service name="PlayerService">
+    <wsdl:port name="PlayerServiceSOAP" binding="tns:PlayerServiceSOAPBinding">
+      <soap:address location="http://localhost:3000/soap/player"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:3000/soap/player</con:endpoint></con:endpoints><con:operation id="4c85ceb1-ee0c-45ec-a441-cb3b84c153da" isOneWay="false" action="http://example.com/player-service/createPlayer" name="createPlayer" bindingOperationName="createPlayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6718332d-25fe-4900-bfaa-4c443dfa2780" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:play="http://example.com/player-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <play:createPlayerRequest>
+         <player>
+            <!--Optional:-->
+            <id>?</id>
+            <name>?</name>
+            <country>?</country>
+            <club>?</club>
+            <position>?</position>
+            <age>?</age>
+            <isActive>?</isActive>
+            <!--Zero or more repetitions:-->
+            <statistics>
+               <season>?</season>
+               <goals>?</goals>
+               <assists>?</assists>
+               <matches>?</matches>
+               <!--Optional:-->
+               <yellowCards>?</yellowCards>
+               <!--Optional:-->
+               <redCards>?</redCards>
+               <!--Optional:-->
+               <minutesPlayed>?</minutesPlayed>
+            </statistics>
+            <!--Zero or more repetitions:-->
+            <awards>
+               <awardName>?</awardName>
+               <year>?</year>
+               <category>?</category>
+            </awards>
+         </player>
+      </play:createPlayerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/createPlayer"/></con:call></con:operation><con:operation id="fdfac735-90a9-43e6-ba14-c92d28d2e346" isOneWay="false" action="http://example.com/player-service/generateToken" name="generateToken" bindingOperationName="generateToken" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7c744ce7-56b4-42da-b0d5-5c5f4930f005" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:play="http://example.com/player-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <play:generateTokenRequest>
+         <username>?</username>
+         <password>?</password>
+      </play:generateTokenRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/generateToken"/></con:call></con:operation><con:operation id="231e72aa-f3d3-4feb-9edd-a36adfbad145" isOneWay="false" action="http://example.com/player-service/getPlayer" name="getPlayer" bindingOperationName="getPlayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a1128543-e8bc-47c7-852e-260f48d71d5e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:play="http://example.com/player-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <play:getPlayerRequest>
+         <id>?</id>
+      </play:getPlayerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/getPlayer"/></con:call></con:operation><con:operation id="7ef2e647-8c25-4b1f-9add-c13ef31744d8" isOneWay="false" action="http://example.com/player-service/listPlayers" name="listPlayers" bindingOperationName="listPlayers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b4d3c850-b1d8-4eeb-ab1d-595567bd9574" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:play="http://example.com/player-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <play:listPlayersRequest/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/player-service/listPlayers"/></con:call></con:operation></con:interface><con:testSuite id="dc834ba9-2a0d-42e1-b619-b320cbfcee88" name="PlayerBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="d7e20d4f-1c5a-465c-a96d-354853d2d5f4" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="createPlayer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="e26ffb5c-ff48-49ca-ab5d-217fc0d9f2a6" name="createPlayer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PlayerBinding</con:interface><con:operation>createPlayer</con:operation><con:request name="createPlayer" id="824c2920-29eb-428f-87e0-db8184c68f8c"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://example.com/player-service/createPlayer" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="69721cd6-6b58-40e7-a41e-adb8ae99c909" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="deletePlayer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="b8e0eff0-e9e6-4833-801a-d05da32d8930" name="deletePlayer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PlayerBinding</con:interface><con:operation>deletePlayer</con:operation><con:request name="deletePlayer" id="78d2a798-47ee-404d-b610-213556cb4d2c"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://example.com/player-service/deletePlayer" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="e727454c-99f5-4f9e-9eb1-c8b059590a2e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="generateToken TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="ad71e3b6-a266-4f3c-94ca-b34eb07798d6" name="generateToken"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PlayerBinding</con:interface><con:operation>generateToken</con:operation><con:request name="generateToken" id="a5e00479-1de4-4035-be6a-de24b4fc2e88"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://example.com/player-service/generateToken"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="76a1443a-7a8c-4774-9b58-b885775db337" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPlayer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="e732466b-b453-4b3a-b5ab-bfb19ac55e30" name="getPlayer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PlayerBinding</con:interface><con:operation>getPlayer</con:operation><con:request name="getPlayer" id="c763473f-e233-43be-9d7b-061430591240"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://example.com/player-service/getPlayer"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="c7373df6-aad6-47f1-8917-9f76faf11528" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="listPlayers TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="e174357f-93cc-4d5f-ac39-8b24984f6b92" name="listPlayers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PlayerBinding</con:interface><con:operation>listPlayers</con:operation><con:request name="listPlayers" id="8b4a0a24-6ac4-46c9-ab23-ab5f376ebf7b"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://example.com/player-service/listPlayers"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="ac3d7f05-a67e-4bc9-ae5b-37c97114f98f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="updatePlayer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="d734dc6f-cc1c-4d31-9296-d040252bde83" name="updatePlayer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PlayerBinding</con:interface><con:operation>updatePlayer</con:operation><con:request name="updatePlayer" id="60d6c411-0dc6-4460-b456-f65c20c0bff1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap/player</con:endpoint><con:request>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body/>
+&lt;/soapenv:Envelope></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://example.com/player-service/updatePlayer"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
