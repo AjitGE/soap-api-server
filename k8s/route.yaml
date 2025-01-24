@@ -5,12 +5,11 @@ metadata:
   labels:
     app: soap-api
 spec:
-  port:
-    targetPort: http
   to:
     kind: Service
     name: soap-api
-    weight: 100
+  port:
+    targetPort: http
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect

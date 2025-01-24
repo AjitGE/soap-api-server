@@ -1,0 +1,36 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: soap-api
+spec:
+  hosts:
+    - "soap-api.example.com"
+  gateways:
+    - soap-api-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /soap/player
+      route:
+        - destination:
+            host: soap-api
+            port:
+              number: 80
+      timeout: 30s
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+      fault:
+        delay:
+          percentage:
+            value: 0.1
+          fixedDelay: 5s
+      corsPolicy:
+        allowOrigins:
+          - exact: "*"
+        allowMethods:
+          - POST
+        allowHeaders:
+          - content-type
+          - authorization
+        maxAge: "24h"
