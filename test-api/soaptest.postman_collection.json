@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "31de21a5-3fbd-4c6f-b9c7-71f3b28b313c",
+		"name": "soaptest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12467931",
+		"_collection_link": "https://orange-capsule-2517.postman.co/workspace/tutorial~0f638ceb-ca85-4cb7-9103-1f3d8af685d6/collection/12467931-31de21a5-3fbd-4c6f-b9c7-71f3b28b313c?action=share&source=collection_link&creator=12467931"
+	},
+	"item": [
+		{
+			"name": "delete Player request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:deletePlayerRequest>\n         <id>3</id>\n      </tns:deletePlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:createPlayerRequest>\n         <name>Lionel Messi</name>\n         <country>Argentina</country>\n         <club>Inter Miami</club>\n         <position>Forward</position>\n         <age>36</age>\n         <statistics>\n            <season>2023-2024</season>\n            <goals>15</goals>\n            <assists>10</assists>\n            <matches>20</matches>\n            <yellowCards>2</yellowCards>\n            <redCards>0</redCards>\n            <minutesPlayed>1800</minutesPlayed>\n         </statistics>\n      </tns:createPlayerRequest>\n   </soap:Body>\n</soap:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "get List of Player",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:listPlayersRequest/>\n   </soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:createPlayerRequest>\n         <name>Lionel Messi</name>\n         <country>Argentina</country>\n         <club>Inter Miami</club>\n         <position>Forward</position>\n         <age>36</age>\n         <isActive>true</isActive>\n         <statistics>\n            <season>2023-2024</season>\n            <goals>15</goals>\n            <assists>10</assists>\n            <matches>20</matches>\n            <yellowCards>2</yellowCards>\n            <redCards>0</redCards>\n            <minutesPlayed>1800</minutesPlayed>\n         </statistics>\n         <awards>\n            <awardName>Ballon d Or</awardName>\n            <year>2023</year>\n            <category>Best Player</category>\n         </awards>\n         <awards>\n            <awardName>FIFA The Best</awardName>\n            <year>2023</year>\n            <category>Best Men Player</category>\n         </awards>\n      </tns:createPlayerRequest>\n   </soap:Body>\n</soap:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "generate Bearer token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:generateTokenRequest>\n         <username>admin</username>\n         <password>password123</password>\n      </tns:generateTokenRequest>\n   </soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:generateTokenRequest>\n         <username>admin</username>\n         <password>password123</password>\n      </tns:generateTokenRequest>\n   </soap:Body>\n</soap:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "getPlayer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:getPlayerRequest>\n         <id>1</id>\n      </tns:getPlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Bearer YOUR_TOKEN_HERE' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:getPlayerRequest>\n         <id>1</id>\n      </tns:getPlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "createPlayer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:createPlayerRequest>\n         <player>\n            <name>Erling Haaland</name>\n            <country>Norway</country>\n            <club>Manchester City</club>\n            <position>Forward</position>\n            <age>23</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>20</goals>\n               <assists>5</assists>\n               <matches>25</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>2250</minutesPlayed>\n            </statistics>\n            <awards>\n               <awardName>Premier League Golden Boot</awardName>\n               <year>2023</year>\n               <category>Top Scorer</category>\n            </awards>\n         </player>\n      </tns:createPlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Bearer YOUR_TOKEN_HERE' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:createPlayerRequest>\n         <player>\n            <name>Erling Haaland</name>\n            <country>Norway</country>\n            <club>Manchester City</club>\n            <position>Forward</position>\n            <age>23</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>20</goals>\n               <assists>5</assists>\n               <matches>25</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>2250</minutesPlayed>\n            </statistics>\n            <awards>\n               <awardName>Premier League Golden Boot</awardName>\n               <year>2023</year>\n               <category>Top Scorer</category>\n            </awards>\n         </player>\n      </tns:createPlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "listOfPlayerInOneGo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:bulkCreatePlayersRequest>\n         <players>\n            <name>Erling Haaland</name>\n            <country>Norway</country>\n            <club>Manchester City</club>\n            <position>Forward</position>\n            <age>23</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>20</goals>\n               <assists>5</assists>\n               <matches>18</matches>\n               <yellowCards>1</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1620</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Kylian Mbappe</name>\n            <country>France</country>\n            <club>Paris Saint-Germain</club>\n            <position>Forward</position>\n            <age>25</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>18</goals>\n               <assists>8</assists>\n               <matches>17</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1530</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Jude Bellingham</name>\n            <country>England</country>\n            <club>Real Madrid</club>\n            <position>Midfielder</position>\n            <age>20</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>15</goals>\n               <assists>6</assists>\n               <matches>20</matches>\n               <yellowCards>3</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1800</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Kevin De Bruyne</name>\n            <country>Belgium</country>\n            <club>Manchester City</club>\n            <position>Midfielder</position>\n            <age>32</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>5</goals>\n               <assists>15</assists>\n               <matches>15</matches>\n               <yellowCards>1</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1350</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Mohamed Salah</name>\n            <country>Egypt</country>\n            <club>Liverpool</club>\n            <position>Forward</position>\n            <age>31</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>14</goals>\n               <assists>8</assists>\n               <matches>19</matches>\n               <yellowCards>0</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1710</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Vinicius Jr</name>\n            <country>Brazil</country>\n            <club>Real Madrid</club>\n            <position>Forward</position>\n            <age>23</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>12</goals>\n               <assists>7</assists>\n               <matches>16</matches>\n               <yellowCards>4</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1440</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Rodri</name>\n            <country>Spain</country>\n            <club>Manchester City</club>\n            <position>Midfielder</position>\n            <age>27</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>4</goals>\n               <assists>3</assists>\n               <matches>20</matches>\n               <yellowCards>5</yellowCards>\n               <redCards>1</redCards>\n               <minutesPlayed>1800</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Bruno Fernandes</name>\n            <country>Portugal</country>\n            <club>Manchester United</club>\n            <position>Midfielder</position>\n            <age>29</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>8</goals>\n               <assists>12</assists>\n               <matches>21</matches>\n               <yellowCards>3</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1890</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Victor Osimhen</name>\n            <country>Nigeria</country>\n            <club>Napoli</club>\n            <position>Forward</position>\n            <age>25</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>16</goals>\n               <assists>4</assists>\n               <matches>17</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1530</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Trent Alexander-Arnold</name>\n            <country>England</country>\n            <club>Liverpool</club>\n            <position>Defender</position>\n            <age>25</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>3</goals>\n               <assists>10</assists>\n               <matches>19</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1710</minutesPlayed>\n            </statistics>\n         </players>\n      </tns:bulkCreatePlayersRequest>\n   </soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soap:Body>\n      <tns:bulkCreatePlayersRequest>\n         <players>\n            <name>Erling Haaland</name>\n            <country>Norway</country>\n            <club>Manchester City</club>\n            <position>Forward</position>\n            <age>23</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>20</goals>\n               <assists>5</assists>\n               <matches>18</matches>\n               <yellowCards>1</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1620</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Kylian Mbappe</name>\n            <country>France</country>\n            <club>Paris Saint-Germain</club>\n            <position>Forward</position>\n            <age>25</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>18</goals>\n               <assists>8</assists>\n               <matches>17</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1530</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Jude Bellingham</name>\n            <country>England</country>\n            <club>Real Madrid</club>\n            <position>Midfielder</position>\n            <age>20</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>15</goals>\n               <assists>6</assists>\n               <matches>20</matches>\n               <yellowCards>3</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1800</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Kevin De Bruyne</name>\n            <country>Belgium</country>\n            <club>Manchester City</club>\n            <position>Midfielder</position>\n            <age>32</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>5</goals>\n               <assists>15</assists>\n               <matches>15</matches>\n               <yellowCards>1</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1350</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Mohamed Salah</name>\n            <country>Egypt</country>\n            <club>Liverpool</club>\n            <position>Forward</position>\n            <age>31</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>14</goals>\n               <assists>8</assists>\n               <matches>19</matches>\n               <yellowCards>0</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1710</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Vinicius Jr</name>\n            <country>Brazil</country>\n            <club>Real Madrid</club>\n            <position>Forward</position>\n            <age>23</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>12</goals>\n               <assists>7</assists>\n               <matches>16</matches>\n               <yellowCards>4</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1440</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Rodri</name>\n            <country>Spain</country>\n            <club>Manchester City</club>\n            <position>Midfielder</position>\n            <age>27</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>4</goals>\n               <assists>3</assists>\n               <matches>20</matches>\n               <yellowCards>5</yellowCards>\n               <redCards>1</redCards>\n               <minutesPlayed>1800</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Bruno Fernandes</name>\n            <country>Portugal</country>\n            <club>Manchester United</club>\n            <position>Midfielder</position>\n            <age>29</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>8</goals>\n               <assists>12</assists>\n               <matches>21</matches>\n               <yellowCards>3</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1890</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Victor Osimhen</name>\n            <country>Nigeria</country>\n            <club>Napoli</club>\n            <position>Forward</position>\n            <age>25</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>16</goals>\n               <assists>4</assists>\n               <matches>17</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1530</minutesPlayed>\n            </statistics>\n         </players>\n         <players>\n            <name>Trent Alexander-Arnold</name>\n            <country>England</country>\n            <club>Liverpool</club>\n            <position>Defender</position>\n            <age>25</age>\n            <isActive>true</isActive>\n            <statistics>\n               <season>2023-2024</season>\n               <goals>3</goals>\n               <assists>10</assists>\n               <matches>19</matches>\n               <yellowCards>2</yellowCards>\n               <redCards>0</redCards>\n               <minutesPlayed>1710</minutesPlayed>\n            </statistics>\n         </players>\n      </tns:bulkCreatePlayersRequest>\n   </soap:Body>\n</soap:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "updatePlayerStats",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:updatePlayerStatsRequest>\n         <id>1</id>\n         <statistics>\n            <season>2023-2024</season>\n            <goals>25</goals>\n            <assists>12</assists>\n            <matches>30</matches>\n            <yellowCards>3</yellowCards>\n            <redCards>0</redCards>\n            <minutesPlayed>2700</minutesPlayed>\n         </statistics>\n      </tns:updatePlayerStatsRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'Authorization: Bearer YOUR_TOKEN_HERE' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:updatePlayerStatsRequest>\n         <id>1</id>\n         <statistics>\n            <season>2023-2024</season>\n            <goals>25</goals>\n            <assists>12</assists>\n            <matches>30</matches>\n            <yellowCards>3</yellowCards>\n            <redCards>0</redCards>\n            <minutesPlayed>2700</minutesPlayed>\n         </statistics>\n      </tns:updatePlayerStatsRequest>\n   </soapenv:Body>\n</soapenv:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "412 status code",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NjY2MzE5LCJleHAiOjE3Mzc3NTI3MTl9.J-U7J5K55dkwS9013pQUOFikSNyJxYvLbJ5yZm5Y5p8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\"><soap:Body><tns:createPlayerRequest><name>Lionel Messi</name><isActive>true</isActive><statistics><season>2023-2024</season><goals>15</goals><assists>10</assists><matches>20</matches><yellowCards>2</yellowCards><redCards>0</redCards><minutesPlayed>1800</minutesPlayed></statistics></tns:createPlayerRequest></soap:Body></soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST http://localhost:3000/soap/player -H 'Content-Type: text/xml' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NjY2MzE5LCJleHAiOjE3Mzc3NTI3MTl9.J-U7J5K55dkwS9013pQUOFikSNyJxYvLbJ5yZm5Y5p8' -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\"><soap:Body><tns:createPlayerRequest><name>Lionel Messi</name><isActive>true</isActive><statistics><season>2023-2024</season><goals>15</goals><assists>10</assists><matches>20</matches><yellowCards>2</yellowCards><redCards>0</redCards><minutesPlayed>1800</minutesPlayed></statistics></tns:createPlayerRequest></soap:Body></soap:Envelope>'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "404 status code",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NjY2NTM4LCJleHAiOjE3Mzc3NTI5Mzh9.ZXVOfrURv0isCLVOLJ27tQN9U6dlD935H4GfI5tALYM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\"><soap:Body><tns:getPlayerRequest><id>999</id></tns:getPlayerRequest></soap:Body></soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST http://localhost:3000/soap/player -H 'Content-Type: text/xml' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NjY2NTM4LCJleHAiOjE3Mzc3NTI5Mzh9.ZXVOfrURv0isCLVOLJ27tQN9U6dlD935H4GfI5tALYM' -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\"><soap:Body><tns:getPlayerRequest><id>999</id></tns:getPlayerRequest></soap:Body></soap:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "sampleCurl",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "\"http://example.com/player-service/listPlayers\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"soapenv:Envelope\": {\n    \"xmlns:soapenv\": \"http://schemas.xmlsoap.org/soap/envelope/\",\n    \"xmlns:play\": \"http://example.com/player-service\",\n    \"soapenv:Header\": {},\n    \"soapenv:Body\": {\n      \"play:listPlayersRequest\":",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST http://localhost:3000/soap/player \\\n  -H 'Content-Type: text/xml' \\\n  -H 'SOAPAction: \"http://example.com/player-service/listPlayers\"' \\\n  -d \"{\n  \\\"soapenv:Envelope\\\": {\n    \\\"xmlns:soapenv\\\": \\\"http://schemas.xmlsoap.org/soap/envelope/\\\",\n    \\\"xmlns:play\\\": \\\"http://example.com/player-service\\\",\n    \\\"soapenv:Header\\\": {},\n    \\\"soapenv:Body\\\": {\n      \\\"play:listPlayersRequest\\\": {}\n    }\n "
+			},
+			"response": []
+		},
+		{
+			"name": "sample 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "\"http://example.com/player-service/getPlayer\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:getPlayerRequest>\n         <id>1</id>\n      </tns:getPlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl --location 'http://localhost:3000/soap/player' \\\n--header 'Content-Type: text/xml' \\\n--header 'SOAPAction: \"http://example.com/player-service/getPlayer\"' \\\n--header 'Authorization: Bearer YOUR_AUTH_TOKEN_HERE' \\\n--data '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:getPlayerRequest>\n         <id>1</id>\n      </tns:getPlayerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "createBulkData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NjY5MDE5LCJleHAiOjE3Mzc3NTU0MTl9.hva0M3VGXzLyUc3Tg12e6VQmqTDCyNFpUDg5Km-CPgE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <ns:bulkCreatePlayersRequest>\n         <players>\n            <!-- Player 1 -->\n            <player>\n               <name>Lionel Messi</name>\n               <country>Argentina</country>\n               <club>Inter Miami</club>\n               <position>Forward</position>\n               <age>36</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>25</goals>\n                  <assists>15</assists>\n                  <matches>30</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2700</minutesPlayed>\n               </statistics>\n               <awards>\n                  <awardName>Ballon d Or</awardName>\n                  <year>2023</year>\n                  <category>Best Player</category>\n               </awards>\n            </player>\n            <!-- Player 2 -->\n            <player>\n               <name>Cristiano Ronaldo</name>\n               <country>Portugal</country>\n               <club>Al Nassr</club>\n               <position>Forward</position>\n               <age>38</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>28</goals>\n                  <assists>10</assists>\n                  <matches>32</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2880</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 3 -->\n            <player>\n               <name>Erling Haaland</name>\n               <country>Norway</country>\n               <club>Manchester City</club>\n               <position>Forward</position>\n               <age>23</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>35</goals>\n                  <assists>8</assists>\n                  <matches>34</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 4 -->\n            <player>\n               <name>Kevin De Bruyne</name>\n               <country>Belgium</country>\n               <club>Manchester City</club>\n               <position>Midfielder</position>\n               <age>32</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>10</goals>\n                  <assists>25</assists>\n                  <matches>30</matches>\n                  <yellowCards>4</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2700</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 5 -->\n            <player>\n               <name>Kylian Mbappe</name>\n               <country>France</country>\n               <club>PSG</club>\n               <position>Forward</position>\n               <age>24</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>30</goals>\n                  <assists>12</assists>\n                  <matches>35</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 6 -->\n            <player>\n               <name>Virgil van Dijk</name>\n               <country>Netherlands</country>\n               <club>Liverpool</club>\n               <position>Defender</position>\n               <age>32</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>3</goals>\n                  <assists>2</assists>\n                  <matches>36</matches>\n                  <yellowCards>5</yellowCards>\n                  <redCards>1</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 7 -->\n            <player>\n               <name>Mohamed Salah</name>\n               <country>Egypt</country>\n               <club>Liverpool</club>\n               <position>Forward</position>\n               <age>31</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>22</goals>\n                  <assists>13</assists>\n                  <matches>35</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 8 -->\n            <player>\n               <name>Thibaut Courtois</name>\n               <country>Belgium</country>\n               <club>Real Madrid</club>\n               <position>Goalkeeper</position>\n               <age>31</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>0</goals>\n                  <assists>0</assists>\n                  <matches>38</matches>\n                  <yellowCards>1</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3420</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 9 -->\n            <player>\n               <name>Joshua Kimmich</name>\n               <country>Germany</country>\n               <club>Bayern Munich</club>\n               <position>Midfielder</position>\n               <age>28</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>5</goals>\n                  <assists>15</assists>\n                  <matches>34</matches>\n                  <yellowCards>6</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 10 -->\n            <player>\n               <name>Bruno Fernandes</name>\n               <country>Portugal</country>\n               <club>Manchester United</club>\n               <position>Midfielder</position>\n               <age>29</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>15</goals>\n                  <assists>18</assists>\n                  <matches>36</matches>\n                  <yellowCards>8</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Players 11-20 -->\n            <player>\n               <name>Jude Bellingham</name>\n               <country>England</country>\n               <club>Real Madrid</club>\n               <position>Midfielder</position>\n               <age>20</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>12</goals>\n                  <assists>8</assists>\n                  <matches>30</matches>\n                  <yellowCards>4</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2700</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Vinicius Jr</name>\n               <country>Brazil</country>\n               <club>Real Madrid</club>\n               <position>Forward</position>\n               <age>23</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>18</goals>\n                  <assists>12</assists>\n                  <matches>32</matches>\n                  <yellowCards>5</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2880</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Phil Foden</name>\n               <country>England</country>\n               <club>Manchester City</club>\n               <position>Midfielder</position>\n               <age>23</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>10</goals>\n                  <assists>10</assists>\n                  <matches>34</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Continue with more players... -->\n            <!-- Players 21-30 -->\n            <player>\n               <name>Marcus Rashford</name>\n               <country>England</country>\n               <club>Manchester United</club>\n               <position>Forward</position>\n               <age>26</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>20</goals>\n                  <assists>8</assists>\n                  <matches>35</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Trent Alexander-Arnold</name>\n               <country>England</country>\n               <club>Liverpool</club>\n               <position>Defender</position>\n               <age>25</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>4</goals>\n                  <assists>15</assists>\n                  <matches>32</matches>\n                  <yellowCards>4</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2880</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Add more players to reach 30 total -->\n            <player>\n               <name>Rodri</name>\n               <country>Spain</country>\n               <club>Manchester City</club>\n               <position>Midfielder</position>\n               <age>27</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>6</goals>\n                  <assists>8</assists>\n                  <matches>36</matches>\n                  <yellowCards>7</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Continue with remaining players... -->\n            <player>\n               <name>Federico Valverde</name>\n               <country>Uruguay</country>\n               <club>Real Madrid</club>\n               <position>Midfielder</position>\n               <age>25</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>8</goals>\n                  <assists>10</assists>\n                  <matches>34</matches>\n                  <yellowCards>5</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Bukayo Saka</name>\n               <country>England</country>\n               <club>Arsenal</club>\n               <position>Forward</position>\n               <age>22</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>15</goals>\n                  <assists>12</assists>\n                  <matches>35</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Declan Rice</name>\n               <country>England</country>\n               <club>Arsenal</club>\n               <position>Midfielder</position>\n               <age>24</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>4</goals>\n                  <assists>6</assists>\n                  <matches>36</matches>\n                  <yellowCards>6</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Rafael Leao</name>\n               <country>Portugal</country>\n               <club>AC Milan</club>\n               <position>Forward</position>\n               <age>24</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>16</goals>\n                  <assists>9</assists>\n                  <matches>33</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2970</minutesPlayed>\n               </statistics>\n            </player>\n         </players>\n      </ns:bulkCreatePlayersRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl --location 'http://localhost:3000/soap/player' \\\n--header 'Content-Type: text/xml' \\\n--header 'Authorization: Bearer YOUR_AUTH_TOKEN' \\\n--data '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <ns:bulkCreatePlayersRequest>\n         <players>\n            <!-- Player 1 -->\n            <player>\n               <name>Lionel Messi</name>\n               <country>Argentina</country>\n               <club>Inter Miami</club>\n               <position>Forward</position>\n               <age>36</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>25</goals>\n                  <assists>15</assists>\n                  <matches>30</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2700</minutesPlayed>\n               </statistics>\n               <awards>\n                  <awardName>Ballon d Or</awardName>\n                  <year>2023</year>\n                  <category>Best Player</category>\n               </awards>\n            </player>\n            <!-- Player 2 -->\n            <player>\n               <name>Cristiano Ronaldo</name>\n               <country>Portugal</country>\n               <club>Al Nassr</club>\n               <position>Forward</position>\n               <age>38</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>28</goals>\n                  <assists>10</assists>\n                  <matches>32</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2880</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 3 -->\n            <player>\n               <name>Erling Haaland</name>\n               <country>Norway</country>\n               <club>Manchester City</club>\n               <position>Forward</position>\n               <age>23</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>35</goals>\n                  <assists>8</assists>\n                  <matches>34</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 4 -->\n            <player>\n               <name>Kevin De Bruyne</name>\n               <country>Belgium</country>\n               <club>Manchester City</club>\n               <position>Midfielder</position>\n               <age>32</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>10</goals>\n                  <assists>25</assists>\n                  <matches>30</matches>\n                  <yellowCards>4</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2700</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 5 -->\n            <player>\n               <name>Kylian Mbappe</name>\n               <country>France</country>\n               <club>PSG</club>\n               <position>Forward</position>\n               <age>24</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>30</goals>\n                  <assists>12</assists>\n                  <matches>35</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 6 -->\n            <player>\n               <name>Virgil van Dijk</name>\n               <country>Netherlands</country>\n               <club>Liverpool</club>\n               <position>Defender</position>\n               <age>32</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>3</goals>\n                  <assists>2</assists>\n                  <matches>36</matches>\n                  <yellowCards>5</yellowCards>\n                  <redCards>1</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 7 -->\n            <player>\n               <name>Mohamed Salah</name>\n               <country>Egypt</country>\n               <club>Liverpool</club>\n               <position>Forward</position>\n               <age>31</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>22</goals>\n                  <assists>13</assists>\n                  <matches>35</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 8 -->\n            <player>\n               <name>Thibaut Courtois</name>\n               <country>Belgium</country>\n               <club>Real Madrid</club>\n               <position>Goalkeeper</position>\n               <age>31</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>0</goals>\n                  <assists>0</assists>\n                  <matches>38</matches>\n                  <yellowCards>1</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3420</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 9 -->\n            <player>\n               <name>Joshua Kimmich</name>\n               <country>Germany</country>\n               <club>Bayern Munich</club>\n               <position>Midfielder</position>\n               <age>28</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>5</goals>\n                  <assists>15</assists>\n                  <matches>34</matches>\n                  <yellowCards>6</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Player 10 -->\n            <player>\n               <name>Bruno Fernandes</name>\n               <country>Portugal</country>\n               <club>Manchester United</club>\n               <position>Midfielder</position>\n               <age>29</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>15</goals>\n                  <assists>18</assists>\n                  <matches>36</matches>\n                  <yellowCards>8</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Players 11-20 -->\n            <player>\n               <name>Jude Bellingham</name>\n               <country>England</country>\n               <club>Real Madrid</club>\n               <position>Midfielder</position>\n               <age>20</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>12</goals>\n                  <assists>8</assists>\n                  <matches>30</matches>\n                  <yellowCards>4</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2700</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Vinicius Jr</name>\n               <country>Brazil</country>\n               <club>Real Madrid</club>\n               <position>Forward</position>\n               <age>23</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>18</goals>\n                  <assists>12</assists>\n                  <matches>32</matches>\n                  <yellowCards>5</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2880</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Phil Foden</name>\n               <country>England</country>\n               <club>Manchester City</club>\n               <position>Midfielder</position>\n               <age>23</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>10</goals>\n                  <assists>10</assists>\n                  <matches>34</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Continue with more players... -->\n            <!-- Players 21-30 -->\n            <player>\n               <name>Marcus Rashford</name>\n               <country>England</country>\n               <club>Manchester United</club>\n               <position>Forward</position>\n               <age>26</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>20</goals>\n                  <assists>8</assists>\n                  <matches>35</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Trent Alexander-Arnold</name>\n               <country>England</country>\n               <club>Liverpool</club>\n               <position>Defender</position>\n               <age>25</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>4</goals>\n                  <assists>15</assists>\n                  <matches>32</matches>\n                  <yellowCards>4</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2880</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Add more players to reach 30 total -->\n            <player>\n               <name>Rodri</name>\n               <country>Spain</country>\n               <club>Manchester City</club>\n               <position>Midfielder</position>\n               <age>27</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>6</goals>\n                  <assists>8</assists>\n                  <matches>36</matches>\n                  <yellowCards>7</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <!-- Continue with remaining players... -->\n            <player>\n               <name>Federico Valverde</name>\n               <country>Uruguay</country>\n               <club>Real Madrid</club>\n               <position>Midfielder</position>\n               <age>25</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>8</goals>\n                  <assists>10</assists>\n                  <matches>34</matches>\n                  <yellowCards>5</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3060</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Bukayo Saka</name>\n               <country>England</country>\n               <club>Arsenal</club>\n               <position>Forward</position>\n               <age>22</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>15</goals>\n                  <assists>12</assists>\n                  <matches>35</matches>\n                  <yellowCards>2</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3150</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Declan Rice</name>\n               <country>England</country>\n               <club>Arsenal</club>\n               <position>Midfielder</position>\n               <age>24</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>4</goals>\n                  <assists>6</assists>\n                  <matches>36</matches>\n                  <yellowCards>6</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>3240</minutesPlayed>\n               </statistics>\n            </player>\n            <player>\n               <name>Rafael Leao</name>\n               <country>Portugal</country>\n               <club>AC Milan</club>\n               <position>Forward</position>\n               <age>24</age>\n               <isActive>true</isActive>\n               <statistics>\n                  <season>2023</season>\n                  <goals>16</goals>\n                  <assists>9</assists>\n                  <matches>33</matches>\n                  <yellowCards>3</yellowCards>\n                  <redCards>0</redCards>\n                  <minutesPlayed>2970</minutesPlayed>\n               </statistics>\n            </player>\n         </players>\n      </ns:bulkCreatePlayersRequest>\n   </soapenv:Body>\n</soapenv:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAll",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "curl --location 'http://localhost:3000/soap/player' \\\n--header 'Content-Type: text/xml' \\\n--header 'Authorization: Bearer YOUR_AUTH_TOKEN_HERE' \\\n--data '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <tns:deleteAllPlayerStatsRequest/>\n   </soapenv:Body>\n</soapenv:Envelope>'",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl --location 'http://localhost:3000/soap/player' \\\n--header 'Content-Type: text/xml' \\\n--header 'Authorization: Bearer YOUR_AUTH_TOKEN' \\\n--data '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://example.com/player-service\">\n   <soapenv:Body>\n      <ns:deleteAllPlayerStatsRequest/>\n   </soapenv:Body>\n</soapenv:Envelope>'"
+			},
+			"response": []
+		},
+		{
+			"name": "addbulkData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\">\n    <soap:Body>\n        <tns:bulkCreatePlayersRequest>\n            <players>\n                <name>Lionel Messi</name>\n                <country>Argentina</country>\n                <club>Inter Miami</club>\n                <position>Forward</position>\n                <age>36</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>25</goals>\n                    <assists>15</assists>\n                    <matches>30</matches>\n                    <yellowCards>2</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>2700</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Ballon dOr</awardName>\n                    <year>2023</year>\n                    <category>Best Player</category>\n                </award>\n            </players>\n            <players>\n                <name>Cristiano Ronaldo</name>\n                <country>Portugal</country>\n                <club>Al Nassr</club>\n                <position>Forward</position>\n                <age>39</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>30</goals>\n                    <assists>10</assists>\n                    <matches>28</matches>\n                    <yellowCards>3</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>2520</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Saudi Pro League Player of the Month</awardName>\n                    <year>2024</year>\n                    <category>Best Player</category>\n                </award>\n            </players>\n            <players>\n                <name>Erling Haaland</name>\n                <country>Norway</country>\n                <club>Manchester City</club>\n                <position>Forward</position>\n                <age>23</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>35</goals>\n                    <assists>8</assists>\n                    <matches>32</matches>\n                    <yellowCards>1</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>2880</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Premier League Golden Boot</awardName>\n                    <year>2023</year>\n                    <category>Top Scorer</category>\n                </award>\n            </players>\n            <players>\n                <name>Kylian Mbappe</name>\n                <country>France</country>\n                <club>PSG</club>\n                <position>Forward</position>\n                <age>25</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>28</goals>\n                    <assists>12</assists>\n                    <matches>30</matches>\n                    <yellowCards>2</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>2700</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Ligue 1 Player of the Year</awardName>\n                    <year>2023</year>\n                    <category>Best Player</category>\n                </award>\n            </players>\n            <players>\n                <name>Kevin De Bruyne</name>\n                <country>Belgium</country>\n                <club>Manchester City</club>\n                <position>Midfielder</position>\n                <age>32</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>12</goals>\n                    <assists>25</assists>\n                    <matches>35</matches>\n                    <yellowCards>4</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>3150</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Premier League Playmaker</awardName>\n                    <year>2023</year>\n                    <category>Most Assists</category>\n                </award>\n            </players>\n            <players>\n                <name>Jude Bellingham</name>\n                <country>England</country>\n                <club>Real Madrid</club>\n                <position>Midfielder</position>\n                <age>20</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>15</goals>\n                    <assists>10</assists>\n                    <matches>30</matches>\n                    <yellowCards>5</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>2700</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Golden Boy</awardName>\n                    <year>2023</year>\n                    <category>Best Young Player</category>\n                </award>\n            </players>\n            <players>\n                <name>Mohamed Salah</name>\n                <country>Egypt</country>\n                <club>Liverpool</club>\n                <position>Forward</position>\n                <age>31</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>22</goals>\n                    <assists>13</assists>\n                    <matches>33</matches>\n                    <yellowCards>1</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>2970</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>African Player of the Year</awardName>\n                    <year>2023</year>\n                    <category>Best African Player</category>\n                </award>\n            </players>\n            <players>\n                <name>Vinicius Jr</name>\n                <country>Brazil</country>\n                <club>Real Madrid</club>\n                <position>Forward</position>\n                <age>23</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>18</goals>\n                    <assists>15</assists>\n                    <matches>32</matches>\n                    <yellowCards>6</yellowCards>\n                    <redCards>1</redCards>\n                    <minutesPlayed>2880</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>La Liga Young Player</awardName>\n                    <year>2023</year>\n                    <category>Best Young Player</category>\n                </award>\n            </players>\n            <players>\n                <name>Virgil van Dijk</name>\n                <country>Netherlands</country>\n                <club>Liverpool</club>\n                <position>Defender</position>\n                <age>32</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>3</goals>\n                    <assists>2</assists>\n                    <matches>35</matches>\n                    <yellowCards>4</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>3150</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>PFA Team of the Year</awardName>\n                    <year>2023</year>\n                    <category>Best Defender</category>\n                </award>\n            </players>\n            <players>\n                <name>Thibaut Courtois</name>\n                <country>Belgium</country>\n                <club>Real Madrid</club>\n                <position>Goalkeeper</position>\n                <age>31</age>\n                <isActive>true</isActive>\n                <statistics>\n                    <season>2023</season>\n                    <goals>0</goals>\n                    <assists>0</assists>\n                    <matches>38</matches>\n                    <yellowCards>1</yellowCards>\n                    <redCards>0</redCards>\n                    <minutesPlayed>3420</minutesPlayed>\n                </statistics>\n                <award>\n                    <awardName>Zamora Trophy</awardName>\n                    <year>2023</year>\n                    <category>Best Goalkeeper</category>\n                </award>\n            </players>\n        </tns:bulkCreatePlayersRequest>\n    </soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://localhost:3000/soap/player",
+				"description": "Generated from cURL: curl -X POST http://localhost:3000/soap/player -H 'Content-Type: text/xml' -H 'Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=' -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://example.com/player-service\"><soap:Body><tns:bulkCreatePlayersRequest><players><n>Lionel Messi</n><country>Argentina</country><club>Inter Miami</club><position>Forward</position><age>36</age><isActive>true</isActive><statistics><season>2023</season><goals>25</goals><assists>15</assists><matches>30</matches><yellowCards>2</yellowCards><redCards>0</redCards><minutesPlayed>2700</minutesPlayed></statistics><award><awardName>Ballon dOr</awardName><year>2023</year><category>Best Player</category></award></players><players><n>Cristiano Ronaldo</n><country>Portugal</country><club>Al Nassr</club><position>Forward</position><age>39</age><isActive>true</isActive><statistics><season>2023</season><goals>30</goals><assists>10</assists><matches>28</matches><yellowCards>3</yellowCards><redCards>0</redCards><minutesPlayed>2520</minutesPlayed></statistics><award><awardName>Saudi Pro League Player of the Month</awardName><year>2024</year><category>Best Player</category></award></players><players><n>Erling Haaland</n><country>Norway</country><club>Manchester City</club><position>Forward</position><age>23</age><isActive>true</isActive><statistics><season>2023</season><goals>35</goals><assists>8</assists><matches>32</matches><yellowCards>1</yellowCards><redCards>0</redCards><minutesPlayed>2880</minutesPlayed></statistics><award><awardName>Premier League Golden Boot</awardName><year>2023</year><category>Top Scorer</category></award></players><players><n>Kylian Mbappe</n><country>France</country><club>PSG</club><position>Forward</position><age>25</age><isActive>true</isActive><statistics><season>2023</season><goals>28</goals><assists>12</assists><matches>30</matches><yellowCards>2</yellowCards><redCards>0</redCards><minutesPlayed>2700</minutesPlayed></statistics><award><awardName>Ligue 1 Player of the Year</awardName><year>2023</year><category>Best Player</category></award></players><players><n>Kevin De Bruyne</n><country>Belgium</country><club>Manchester City</club><position>Midfielder</position><age>32</age><isActive>true</isActive><statistics><season>2023</season><goals>12</goals><assists>25</assists><matches>35</matches><yellowCards>4</yellowCards><redCards>0</redCards><minutesPlayed>3150</minutesPlayed></statistics><award><awardName>Premier League Playmaker</awardName><year>2023</year><category>Most Assists</category></award></players><players><n>Jude Bellingham</n><country>England</country><club>Real Madrid</club><position>Midfielder</position><age>20</age><isActive>true</isActive><statistics><season>2023</season><goals>15</goals><assists>10</assists><matches>30</matches><yellowCards>5</yellowCards><redCards>0</redCards><minutesPlayed>2700</minutesPlayed></statistics><award><awardName>Golden Boy</awardName><year>2023</year><category>Best Young Player</category></award></players><players><n>Mohamed Salah</n><country>Egypt</country><club>Liverpool</club><position>Forward</position><age>31</age><isActive>true</isActive><statistics><season>2023</season><goals>22</goals><assists>13</assists><matches>33</matches><yellowCards>1</yellowCards><redCards>0</redCards><minutesPlayed>2970</minutesPlayed></statistics><award><awardName>African Player of the Year</awardName><year>2023</year><category>Best African Player</category></award></players><players><n>Vinicius Jr</n><country>Brazil</country><club>Real Madrid</club><position>Forward</position><age>23</age><isActive>true</isActive><statistics><season>2023</season><goals>18</goals><assists>15</assists><matches>32</matches><yellowCards>6</yellowCards><redCards>1</redCards><minutesPlayed>2880</minutesPlayed></statistics><award><awardName>La Liga Young Player</awardName><year>2023</year><category>Best Young Player</category></award></players><players><n>Virgil van Dijk</n><country>Netherlands</country><club>Liverpool</club><position>Defender</position><age>32</age><isActive>true</isActive><statistics><season>2023</season><goals>3</goals><assists>2</assists><matches>35</matches><yellowCards>4</yellowCards><redCards>0</redCards><minutesPlayed>3150</minutesPlayed></statistics><award><awardName>PFA Team of the Year</awardName><year>2023</year><category>Best Defender</category></award></players><players><n>Thibaut Courtois</n><country>Belgium</country><club>Real Madrid</club><position>Goalkeeper</position><age>31</age><isActive>true</isActive><statistics><season>2023</season><goals>0</goals><assists>0</assists><matches>38</matches><yellowCards>1</yellowCards><redCards>0</redCards><minutesPlayed>3420</minutesPlayed></statistics><award><awardName>Zamora Trophy</awardName><year>2023</year><category>Best Goalkeeper</category></award></players></tns:bulkCreatePlayersRequest></soap:Body></soap:Envelope>'"
+			},
+			"response": []
+		}
+	]
+}
