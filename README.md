@@ -115,6 +115,10 @@ curl -X POST \
 - [API Documentation](./API_DOCUMENTATION.md)
 - [WSDL Documentation](./src/services/player.wsdl)
 
+## 🧪 testing api server
+
+- [collection To Test Soap Api server](./test-api/soaptest.postman_collection.json)
+
 ## 🛠️ Development
 
 ### Project Structure
